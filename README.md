@@ -1,2 +1,2 @@
 # qrcodegeneration
- qrcodegeneration and read using javascript
+ qrcodegeneration and read using Javascript
