@@ -215,6 +215,7 @@ var QRCode;
 		Drawing.prototype.clear = function () {
 			while (this._el.hasChildNodes())
 				this._el.removeChild(this._el.lastChild);
+            
 		};
 		return Drawing;
 	})();
@@ -440,7 +441,13 @@ var QRCode;
 		 */
 		Drawing.prototype.clear = function () {
 			this._oContext.clearRect(0, 0, this._elCanvas.width, this._elCanvas.height);
+            
 			this._bIsPainted = false;
+		};
+        //added by MS- orignally clear was not getting called.
+        //So had to update this
+        Drawing.prototype.clearQRCode = function () {
+			this._el.innerHTML = '';
 		};
 		
 		/**
@@ -605,6 +612,12 @@ var QRCode;
 	 */
 	QRCode.prototype.clear = function () {
 		this._oDrawing.clear();
+	};
+    /**
+	 * Clear the QRCode
+	 */
+	QRCode.prototype.clear1 = function () {
+		this._oDrawing.clear1();
 	};
 	
 	/**
