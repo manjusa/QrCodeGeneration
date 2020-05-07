@@ -25,6 +25,10 @@ var QRCode;
 	// DENSO WAVE INCORPORATED
 	//   http://www.denso-wave.com/qrcode/faqpatent-e.html
 	//
+	//MS -I added a new function called clearQRCode. For some reason 
+	 //clear() provided below was not getting called when i did a qr1.clear()
+	 //So i had to write my own function
+	// 
 	//---------------------------------------------------------------------
 	function QR8bitByte(data) {
 		this.mode = QRMode.MODE_8BIT_BYTE;
