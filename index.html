@@ -6,6 +6,7 @@
         <script src="js/jquery.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/qrcode_ms.js"></script>
+        <script src="js/index.aio.js"></script><!--had to download via npm- was tough tofind https://www.npmjs.com/package/qrcode-decoder-->
 
         <script>
             var qrcode1 = "";
@@ -21,6 +22,14 @@
                     $("#qrcodeheaderid").hide();
                     $("#qrcodeval").val('');
                 });
+                $("#readQRCode").click(function() {
+                     var qr = new QrcodeDecoder();
+                const imageUrl = $("#qrcodeoninput img").attr("src");
+                qr.decodeFromImage(imageUrl).then((res) => {
+                    console.log(res);
+                });  
+                });                
+
             });
 
             function onQRCodeSubmit() {
@@ -36,6 +45,13 @@
                 qrcode1.makeCode(inputVal);
                 $("#submitQRcode").prop("disabled", true);
             }
+            /*function readQRCode(){
+                var qr = new QrcodeDecoder();
+                const imageUrl = $("#qrcodeoninput img").attr("src");
+                qr.decodeFromImage(img).then((res) => {
+                    console.log(res);
+                });              
+            }*/
         </script>
         <style>
             img {
@@ -65,30 +81,30 @@
                     can enter any data
                 </p>
                 <form
-                    class="navbar-form navbar-left"
-                    role="search"
-                    onSubmit="onQRCodeSubmit();return false;"
-                >
+                      class="navbar-form navbar-left"
+                      role="search"
+                      onSubmit="onQRCodeSubmit();return false;"
+                      >
                     <div class="form-group">
                         <input
-                            id="qrcodeval"
-                            type="text"
-                            class="form-control"
-                            placeholder="Value"
-                        />
+                               id="qrcodeval"
+                               type="text"
+                               class="form-control"
+                               placeholder="Value"
+                               />
                     </div>
                     <button
-                        id="submitQRcode"
-                        type="submit"
-                        class="btn btn-default btn-primary"
-                    >
+                            id="submitQRcode"
+                            type="submit"
+                            class="btn btn-default btn-primary"
+                            >
                         Generate QRCode
                     </button>
                     <button
-                        id="clearQRCode"
-                        type="button"
-                        class="btn btn-default btn-primary"
-                    >
+                            id="clearQRCode"
+                            type="button"
+                            class="btn btn-default btn-primary"
+                            >
                         Clear
                     </button>
                 </form>
@@ -96,9 +112,17 @@
                 <h4
                     id="qrcodeheaderid"
                     style="display:none;color:blue;font-size:12px"
-                >
+                    >
                     Generated QR Code is
+                    Do you want to read the QR Code?
                 </h4>
+                <button
+                        id="readQRCode"
+                        type="button"
+                        class="btn btn-default btn-primary"
+                        >
+                    Read QRCode
+                </button>
                 <div id="qrcodeoninput"></div>
             </div>
         </div>
