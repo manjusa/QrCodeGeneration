@@ -19,22 +19,24 @@
                 $("#clearQRCode").click(function() {
                     qrcode1._oDrawing.clearQRCode();
                     $("#submitQRcode").prop("disabled", false);
-                    $("#qrcodeheaderid").hide();
                     $("#qrcodeval").val('');
+                    $("#result").hide();
+                     $("#qrcodeReadResult").hide();
                 });
                 $("#readQRCode").click(function() {
-                     var qr = new QrcodeDecoder();
-                const imageUrl = $("#qrcodeoninput img").attr("src");
-                qr.decodeFromImage(imageUrl).then((res) => {
-                    console.log(res);
-                });  
+                    var qr = new QrcodeDecoder();
+                    $("#qrcodeReadResult").show();
+                    const imageUrl = $("#qrcodeoninput img").attr("src");
+                    qr.decodeFromImage(imageUrl).then((res) => {
+                        $("#qrcodedata").html(res.data);
+                    });  
                 });                
 
             });
 
             function onQRCodeSubmit() {
-                var inputVal = $("#qrcodeval").val();
-                $("#qrcodeheaderid").show();
+                var inputVal = $("#qrcodeval").val();               
+                $("#result").show();
                 qrcode1 = new QRCode(document.getElementById("qrcodeoninput"), {
                     height: 100,
                     width: 128,
@@ -45,13 +47,7 @@
                 qrcode1.makeCode(inputVal);
                 $("#submitQRcode").prop("disabled", true);
             }
-            /*function readQRCode(){
-                var qr = new QrcodeDecoder();
-                const imageUrl = $("#qrcodeoninput img").attr("src");
-                qr.decodeFromImage(img).then((res) => {
-                    console.log(res);
-                });              
-            }*/
+
         </script>
         <style>
             img {
@@ -108,22 +104,29 @@
                         Clear
                     </button>
                 </form>
-                <br /><br /><br /><br />
-                <h4
-                    id="qrcodeheaderid"
-                    style="display:none;color:blue;font-size:12px"
-                    >
-                    Generated QR Code is
-                    Do you want to read the QR Code?
-                </h4>
-                <button
-                        id="readQRCode"
-                        type="button"
-                        class="btn btn-default btn-primary"
-                        >
-                    Read QRCode
-                </button>
-                <div id="qrcodeoninput"></div>
+                <br/> <br>
+
+
+                <div id="result" style="display:none;color:blue;font-size:12px" class="row">
+                    <h4
+                        id="qrcodeheaderid">
+                        Generated QR Code is
+                    </h4>
+                    <div id="qrcodeoninput"></div><br>
+                    <div class="col-sm-3">
+                        <button
+                                id="readQRCode"
+                                type="button"
+
+                                class="btn btn-default btn-primary"
+                                >
+                            Read QRCode generated above
+                        </button>
+                    </div>
+                    <div id="qrcodeReadResult" style="display:none;font-size:20px;" class="col-sm-6">
+                        <div>QR code data is:  <span style="color:red" id="qrcodedata"></span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
