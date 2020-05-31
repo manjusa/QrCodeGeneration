@@ -15,7 +15,6 @@
                     document.getElementById("qrcodeonload"),
                     "www.manjustechblog.com"
                 );
-
                 $("#clearQRCode").click(function() {
                     qrcode1._oDrawing.clearQRCode();
                     $("#submitQRcode").prop("disabled", false);
@@ -30,6 +29,7 @@
                     qr.decodeFromImage(imageUrl).then((res) => {
                         $("#qrcodedata").html(res.data);
                     });  
+                });
             });
 
             function onQRCodeSubmit() {
