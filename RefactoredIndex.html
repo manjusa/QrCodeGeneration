@@ -26,7 +26,7 @@
         /* Compile markup string as a named template */
         $.template("commonDynamicTemplate", markup);
         /* Render the named template */
-        $.tmpl("commonDynamicTemplate", results).appendTo("#myTable");
+        $.tmpl("commonDynamicTemplate", results).appendTo("#peopleTable");
       });
     </script>
   </head>
@@ -38,7 +38,9 @@
         <p>This is generic header.</p>
       </div>
       <div class="table-responsive">
-        <table id="myTable" class="table"></table>
+        <h4 style="color: blue">Below comes from Dynamic Template</h4>
+        <br />
+        <table id="peopleTable" class="table"></table>
       </div>
     </div>
   </body>
