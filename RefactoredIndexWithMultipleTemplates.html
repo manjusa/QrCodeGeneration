@@ -6,6 +6,12 @@
     <script src="js/jquery.tmpl.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="css/bootstrap-3.3.4-min.css" rel="stylesheet" />
+    <script>
+      var i = 0;
+      function countRow() {
+        return i++;
+      }
+    </script>
     <!--
 /*
  **1)jQuery templates are a cool way to tie a datasource (often json, but at least arrays of maps/structurscriptput. 
@@ -14,7 +20,8 @@
 <script id="artistsTemplate" type="text/x-jquery-tmpl">
 	<div><h4>#${artistid} ${firstname} ${lastname}</h4>${city} ${state}</div>
 </script>
-jQuery templates will loop over the array of maps/structures and for each ${xxx} replace the it with the value of a key of the same name (xxx). Quick sample of the first two records of data:
+jQuery templates will loop over the array of maps/structures
+ and for each ${xxx} replace the it with the value of a key of the same name (xxx). Quick sample of the first two records of data:
 [
   2) call some function to show count*/
 
