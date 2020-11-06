@@ -3,7 +3,6 @@
   <head>
     <title>How to reuse</title>
     <script src="js/jquery.js"></script>
-    <script src="js/jquery.tmpl.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <link href="css/bootstrap-3.3.4-min.css" rel="stylesheet" />
     <script>
@@ -12,21 +11,6 @@
           "common/commonStaticHeader.html #menu",
           function () {}
         );
-      });
-      var results = [
-        { FName: "Manju", LName: "Sh", Email: "Test@test.com" },
-        { FName: "Mat", LName: "Her", Email: "Test@test1.com" },
-      ];
-      $.get("common/commonDynamicTemplate.html", function (
-        data,
-        textStatus,
-        XMLHttpRequest
-      ) {
-        var markup = data;
-        /* Compile markup string as a named template */
-        $.template("commonDynamicTemplate", markup);
-        /* Render the named template */
-        $.tmpl("commonDynamicTemplate", results).appendTo("#peopleTable");
       });
     </script>
   </head>
@@ -37,10 +21,9 @@
         <h1>Generic Header</h1>
         <p>This is generic header.</p>
       </div>
-      <div class="table-responsive">
-        <h4 style="color: blue">Below comes from Dynamic Template</h4>
+      <div>
+        <h4 style="color: blue">Your page specific content here</h4>
         <br />
-        <table id="peopleTable" class="table"></table>
       </div>
     </div>
   </body>
